@@ -4,6 +4,7 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 import { fetchUserData } from "../actions/mainActions";
 
+// use container
 const LoginPage = ({ fetchUserData }) => {
   const [jobcoinAddress, setJobcoinAddress] = useState("");
 
@@ -23,12 +24,7 @@ const LoginPage = ({ fetchUserData }) => {
       <FormGroup>
         <div> Welcome! Sign in with your job coin address</div>
         <Label for="jobcoinAddress">Jobcoin Address</Label>
-        <Input
-          onChange={handleTextInput}
-          type="text"
-          name="jobcoinAddress"
-          id="jobcoinAddress"
-        />
+        <Input onChange={handleTextInput} type="text" id="jobcoinAddress" />
       </FormGroup>
       <Button>Sign In</Button>
     </Form>
