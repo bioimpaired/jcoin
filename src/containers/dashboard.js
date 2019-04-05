@@ -5,8 +5,11 @@ import { Container, Row, Col } from "reactstrap";
 
 import Balance from "../components/Balance";
 import TransactionsGraph from "../components/TransactionsGraph";
+import TransferWidget from "../components/TransferWidget";
 
-const Dashboard = ({ props }) => {
+import { sendJobcoin } from "../actions/mainActions";
+
+const Dashboard = ({ props, sendJobcoin }) => {
   console.log("dashboard", props);
   const { balance, currentUserJobcoinAddress, transactions } = props;
   return (
@@ -17,7 +20,10 @@ const Dashboard = ({ props }) => {
         <Row>
           <Col sm="4">
             <Balance balance={balance} />
-            <div>widget</div>
+            <TransferWidget
+              sendJobcoin={sendJobcoin}
+              currentUserJobcoinAddress={currentUserJobcoinAddress}
+            />
           </Col>
           <Col sm="8">
             <TransactionsGraph transactions={transactions} />
@@ -30,5 +36,8 @@ const Dashboard = ({ props }) => {
 
 export default connect(
   state => ({ props: state.mainReducer }),
-  null
+  dispatch => ({
+    sendJobcoin: (sendAddress, fromAddress, amount) =>
+      dispatch(sendJobcoin(sendAddress, fromAddress, amount))
+  })
 )(Dashboard);
