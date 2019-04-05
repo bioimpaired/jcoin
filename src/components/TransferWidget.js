@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+
 import {
   Button,
   Form,
@@ -22,18 +24,13 @@ const TransferWidget = ({ sendJobcoin, currentUserJobcoinAddress }) => {
     if (e.target.name === "destinationAddress") {
       setDestinationAddress(e.target.value);
     }
-    console.log(destinationAddress, sendAmount);
   };
 
   const handleOnSubmit = e => {
     e.preventDefault();
-    console.log(destinationAddress, sendAmount);
-
     sendJobcoin(destinationAddress, currentUserJobcoinAddress, sendAmount);
-
     setSendAmount("");
     setDestinationAddress("");
-    console.log("sent", destinationAddress, sendAmount);
   };
 
   return (
@@ -70,6 +67,11 @@ const styles = {
   sendButton: {
     width: "100%"
   }
+};
+
+TransferWidget.propTypes = {
+  sendJobcoin: PropTypes.func.isRequired,
+  currentUserJobcoinAddress: PropTypes.string
 };
 
 export default TransferWidget;

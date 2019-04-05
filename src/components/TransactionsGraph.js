@@ -1,12 +1,13 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
+import PropTypes from "prop-types";
 
 const TransactionsGraph = ({ transactions }) => {
   // put into utils
   const balances = [];
   let total = 0;
   const transactionss = transactions.map(transaction => {
-    if (transaction.toAddress != "Alice") {
+    if (transaction.toAddress !== "Alice") {
       return parseFloat(-transaction.amount);
     } else {
       return parseFloat(transaction.amount);
@@ -53,6 +54,17 @@ const TransactionsGraph = ({ transactions }) => {
       />
     </div>
   );
+};
+
+TransactionsGraph.propTypes = {
+  transactions: PropTypes.arrayOf(
+    PropTypes.shape({
+      fromAddress: PropTypes.string,
+      toAddress: PropTypes.string,
+      amount: PropTypes.string,
+      time: PropTypes.string
+    })
+  )
 };
 
 const styles = {

@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import { Container, Row, Col } from "reactstrap";
 
 import Balance from "../components/Balance";
 import TransactionsGraph from "../components/TransactionsGraph";
 import TransferWidget from "../components/TransferWidget";
-import Navbar from "./Navbar";
 
 import { sendJobcoin } from "../actions/mainActions";
 
@@ -31,6 +31,22 @@ const Dashboard = ({ props, sendJobcoin }) => {
       </Container>
     </div>
   );
+};
+
+Dashboard.propTypes = {
+  sendJobcoin: PropTypes.func.isRequired,
+  props: PropTypes.shape({
+    balance: PropTypes.string,
+    currentUserJobcoinAddress: PropTypes.string,
+    transactions: PropTypes.arrayOf(
+      PropTypes.shape({
+        fromAddress: PropTypes.string,
+        toAddress: PropTypes.string,
+        amount: PropTypes.string,
+        time: PropTypes.string
+      })
+    )
+  })
 };
 
 export default connect(

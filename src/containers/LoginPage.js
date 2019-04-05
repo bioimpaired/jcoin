@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 import {
   Button,
   Form,
@@ -54,6 +56,10 @@ const styles = {
   toast: {
     margin: "200px auto"
   }
+};
+
+LoginPage.propTypes = {
+  fetchUserData: PropTypes.func.isRequired
 };
 
 export default connect(

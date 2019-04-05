@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import { Container, Button } from "reactstrap";
 
@@ -13,9 +14,11 @@ const Navbar = ({ currentUserJobcoinAddress, signout }) => {
   return (
     <div style={styles.navbar}>
       <Container>
-        <div class="clearfix">
-          <div class="float-left align-middle">{currentUserJobcoinAddress}</div>
-          <div class="float-right">
+        <div className="clearfix">
+          <div className="float-left align-middle">
+            {currentUserJobcoinAddress}
+          </div>
+          <div className="float-right">
             <Button style={styles.signout} onClick={handleSignout}>
               Sign out
             </Button>
@@ -46,3 +49,8 @@ export default connect(
     signout: () => dispatch(signout())
   })
 )(Navbar);
+
+Navbar.propTypes = {
+  currentUserJobcoinAddress: PropTypes.string.isRequired,
+  signout: PropTypes.func.isRequired
+};
