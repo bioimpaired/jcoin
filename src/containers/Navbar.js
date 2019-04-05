@@ -14,14 +14,12 @@ const Navbar = ({ currentUserJobcoinAddress, signout }) => {
   return (
     <div style={styles.navbar}>
       <Container>
-        <div className="clearfix">
-          <div className="float-left align-middle">
+        <div className="clearfix align-middle">
+          <div style={styles.userName} className="float-left">
             {currentUserJobcoinAddress}
           </div>
-          <div className="float-right">
-            <Button style={styles.signout} onClick={handleSignout}>
-              Sign out
-            </Button>
+          <div style={styles.signout} className="float-right">
+            <Button onClick={handleSignout}>Sign out</Button>
           </div>
         </div>
       </Container>
@@ -36,8 +34,11 @@ const styles = {
     marginBottom: 20,
     width: "100%"
   },
+  userName: {
+    margin: 10
+  },
   signout: {
-    margin: "auto 10"
+    margin: 5
   }
 };
 
