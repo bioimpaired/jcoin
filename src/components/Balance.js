@@ -1,7 +1,13 @@
 import React from "react";
+import { Toast, ToastBody, ToastHeader } from "reactstrap";
 
 const Balance = ({ balance }) => {
-  return <div>balance : {balance}</div>;
+  return (
+    <Toast>
+      <ToastHeader>Balance</ToastHeader>
+      <ToastBody>{balance}</ToastBody>
+    </Toast>
+  );
 };
 
 export default Balance;

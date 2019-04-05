@@ -6,6 +6,7 @@ import { Container, Row, Col } from "reactstrap";
 import Balance from "../components/Balance";
 import TransactionsGraph from "../components/TransactionsGraph";
 import TransferWidget from "../components/TransferWidget";
+import Navbar from "./Navbar";
 
 import { sendJobcoin } from "../actions/mainActions";
 
@@ -15,8 +16,6 @@ const Dashboard = ({ props, sendJobcoin }) => {
   return (
     <div>
       <Container>
-        {/* make this into its own container? navbar*/}
-        <Row>{currentUserJobcoinAddress} login</Row>
         <Row>
           <Col sm="4">
             <Balance balance={balance} />

@@ -35,7 +35,8 @@ const TransactionsGraph = ({ transactions }) => {
   };
 
   return (
-    <div>
+    <div style={styles.border}>
+      <div style={styles.graphTitle}>Jobcoin History Graph</div>
       <Line
         data={chartData}
         options={{
@@ -52,6 +53,17 @@ const TransactionsGraph = ({ transactions }) => {
       />
     </div>
   );
+};
+
+const styles = {
+  graphTitle: {
+    borderBottom: "1px solid rgba(0,0,0,.05)",
+    padding: 10
+  },
+  border: {
+    border: "1px solid rgba(0,0,0,.05)",
+    borderRadius: 5
+  }
 };
 
 export default TransactionsGraph;

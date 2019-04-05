@@ -5,6 +5,14 @@ const sendUrl = "http://jobcoin.gemini.com/parka/api/transactions";
 
 export const FETCH_USER_DATA = "FETCH_USER_DATA";
 export const SEND_JOBCOINS = "SEND_JOBCOINS";
+export const SIGNOUT = "SIGNOUT";
+
+export const signout = () => {
+  return {
+    type: SIGNOUT,
+    payload: null
+  };
+};
 
 export const fetchUserData = jobcoinAddress => {
   console.log("action", jobcoinAddress);

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./containers/LoginPage";
 import Dashboard from "./containers/Dashboard";
+import Navbar from "./containers/Navbar";
 
 class App extends Component {
   render() {
@@ -9,7 +10,14 @@ class App extends Component {
 
     return (
       <div className="App">
-        {currentUserJobcoinAddress ? <Dashboard /> : <LoginPage />}
+        {currentUserJobcoinAddress ? (
+          <div>
+            <Navbar />
+            <Dashboard />
+          </div>
+        ) : (
+          <LoginPage />
+        )}
       </div>
     );
   }
