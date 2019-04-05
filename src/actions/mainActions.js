@@ -15,7 +15,6 @@ export const signout = () => {
 };
 
 export const fetchUserData = jobcoinAddress => {
-  console.log("action", jobcoinAddress);
   return dispatch => {
     const fetchUserDataUrl = fetchUserDataBaseUrl + jobcoinAddress;
     return axios.get(fetchUserDataUrl).then(response => {
@@ -35,67 +34,40 @@ export const fetchUserData = jobcoinAddress => {
 
 export const sendJobcoin = (sendAddress, fromAddress, amount) => {
   return dispatch => {
-    console.log("sent action", sendAddress, fromAddress, amount);
-    // return axios
-    //   .post(
-    //     sendUrl,
-    //     // +
-    //     //   `?fromAddress=${fromAddress}&
-    //     // toAddress=${sendAddress}&
-    //     // amount=${amount}`,
-    //     {
-    //       fromAddress: fromAddress,
-    //       toAddress: sendAddress,
-    //       amount: amount
-    //     },
-    //     {
-    //       "Access-Control-Allow-Origin": "*",
-    //       "Content-Type": "application/json"
-    //     }
-    //   )
-    //   .then(response => {
-    //     // handle success and failure?
-    //     if (response.data.redirect == "/") {
-    //       window.location = "/index";
-    //     } else if (response.data.redirect == "/login") {
-    //       window.location = "/login";
-    //     }
-    //     console.log(
-    //       "sent action finsihed",
-    //       sendAddress,
-    //       fromAddress,
-    //       amount,
-    //       response
-    //     );
-    //   })
+    return axios
+      .post(
+        sendUrl,
+        {
+          fromAddress: fromAddress,
+          toAddress: sendAddress,
+          amount: amount
+        },
+        {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "text/plain, application/json, charset=utf-8",
+          "Access-Control-Allow-Methods": "HEAD, GET, POST, PUT, PATCH, DELETE",
+          "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+        }
+      )
+      .then(response => {
+        // handle success and failure?
+        // if (response.data.redirect == "/") {
+        //   window.location = "/index";
+        // } else if (response.data.redirect == "/login") {
+        //   window.location = "/login";
+        // }
 
-    return fetch(sendUrl, {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "HEAD, GET, POST, PUT, PATCH, DELETE",
-        "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
-      },
+        // grab data again and reload page?
+        console.log(
+          "sent action finsihed",
+          sendAddress,
+          fromAddress,
+          amount,
+          response
+        );
 
-      //make sure to serialize your JSON body
-      body: JSON.stringify({
-        fromAddress: fromAddress,
-        toAddress: sendAddress,
-        amount: amount
-      })
-    }).then(response => {
-      //do something awesome that makes the world a better place
-      console.log("finished post", response);
-      dispatch({
-        type: "nothing",
-        payload: {}
+        // reload page with updated data
+        dispatch(fetchUserData(fromAddress));
       });
-    });
-    // .then(() => {
-    //   // get data and push into redux
-
-    // });
   };
 };

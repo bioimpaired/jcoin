@@ -11,7 +11,6 @@ import TransferWidget from "../components/TransferWidget";
 import { sendJobcoin } from "../actions/mainActions";
 
 const Dashboard = ({ props, sendJobcoin }) => {
-  console.log("dashboard", props);
   const { balance, currentUserJobcoinAddress, transactions } = props;
   return (
     <div>
@@ -25,7 +24,10 @@ const Dashboard = ({ props, sendJobcoin }) => {
             />
           </Col>
           <Col sm="8">
-            <TransactionsGraph transactions={transactions} />
+            <TransactionsGraph
+              transactions={transactions}
+              currentUserJobcoinAddress={currentUserJobcoinAddress}
+            />
           </Col>
         </Row>
       </Container>

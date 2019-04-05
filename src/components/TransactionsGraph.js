@@ -2,28 +2,33 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import PropTypes from "prop-types";
 
-const TransactionsGraph = ({ transactions }) => {
+const TransactionsGraph = ({ transactions, currentUserJobcoinAddress }) => {
   // put into utils
   const balances = [];
-  let total = 0;
-  const transactionss = transactions.map(transaction => {
-    if (transaction.toAddress !== "Alice") {
-      return parseFloat(-transaction.amount);
-    } else {
-      return parseFloat(transaction.amount);
-    }
-  });
-  transactionss.forEach(transaction => {
-    total += transaction;
-    balances.push(total);
-  });
+  let timeStamps = [];
 
-  // convert to time
-  const timeStamps = transactions.map(transaction => {
-    const dateObject = new Date(transaction.timestamp);
-    const time = dateObject.toLocaleString();
-    return time;
-  });
+  let total = 0;
+  if (transactions) {
+    const transactionss = transactions.map(transaction => {
+      // change to current user
+      if (transaction.toAddress !== currentUserJobcoinAddress) {
+        return parseFloat(-transaction.amount);
+      } else {
+        return parseFloat(transaction.amount);
+      }
+    });
+    transactionss.forEach(transaction => {
+      total += transaction;
+      balances.push(total);
+    });
+
+    // convert to time
+    timeStamps = transactions.map(transaction => {
+      const dateObject = new Date(transaction.timestamp);
+      const time = dateObject.toLocaleString();
+      return time;
+    });
+  }
 
   const chartData = {
     labels: timeStamps,
@@ -57,6 +62,7 @@ const TransactionsGraph = ({ transactions }) => {
 };
 
 TransactionsGraph.propTypes = {
+  currentUserJobcoinAddress: PropTypes.string,
   transactions: PropTypes.arrayOf(
     PropTypes.shape({
       fromAddress: PropTypes.string,

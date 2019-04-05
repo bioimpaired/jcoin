@@ -7,7 +7,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USER_DATA:
-      console.log("reducer", action);
       return {
         ...action.payload
       };
