@@ -21,9 +21,7 @@ const LoginPage = ({ fetchUserData }) => {
 
   const handleOnSubmit = e => {
     e.preventDefault();
-
     fetchUserData(jobcoinAddress);
-    // clear form?
   };
 
   const handleTextInput = e => {

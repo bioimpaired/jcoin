@@ -10,7 +10,6 @@ const TransactionsGraph = ({ transactions, currentUserJobcoinAddress }) => {
   let total = 0;
   if (transactions) {
     const transactionss = transactions.map(transaction => {
-      // change to current user
       if (transaction.toAddress !== currentUserJobcoinAddress) {
         return parseFloat(-transaction.amount);
       } else {
