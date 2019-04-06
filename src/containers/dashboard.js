@@ -8,10 +8,16 @@ import Balance from "../components/Balance";
 import TransactionsGraph from "../components/TransactionsGraph";
 import TransferWidget from "../components/TransferWidget";
 
-import { sendJobcoin } from "../actions/mainActions";
+import { sendJobcoin, resetResponseMessage } from "../actions/mainActions";
 
-const Dashboard = ({ props, sendJobcoin }) => {
-  const { balance, currentUserJobcoinAddress, transactions } = props;
+const Dashboard = ({ props, sendJobcoin, resetResponseMessage, stateHere }) => {
+  console.log("dashboard", stateHere);
+  const {
+    balance,
+    currentUserJobcoinAddress,
+    transactions,
+    responseMessage
+  } = props;
   return (
     <div>
       <Container>
@@ -21,6 +27,8 @@ const Dashboard = ({ props, sendJobcoin }) => {
             <TransferWidget
               sendJobcoin={sendJobcoin}
               currentUserJobcoinAddress={currentUserJobcoinAddress}
+              responseMessage={responseMessage}
+              resetResponseMessage={resetResponseMessage}
             />
           </Col>
           <Col sm="8">
@@ -40,6 +48,8 @@ Dashboard.propTypes = {
   props: PropTypes.shape({
     balance: PropTypes.string,
     currentUserJobcoinAddress: PropTypes.string,
+    responseMessage: PropTypes.string,
+    resetResponseMessage: PropTypes.func,
     transactions: PropTypes.arrayOf(
       PropTypes.shape({
         fromAddress: PropTypes.string,
@@ -52,9 +62,10 @@ Dashboard.propTypes = {
 };
 
 export default connect(
-  state => ({ props: state.mainReducer }),
+  state => ({ props: state.mainReducer, stateHere: state }),
   dispatch => ({
     sendJobcoin: (sendAddress, fromAddress, amount) =>
-      dispatch(sendJobcoin(sendAddress, fromAddress, amount))
+      dispatch(sendJobcoin(sendAddress, fromAddress, amount)),
+    resetResponseMessage: () => dispatch(resetResponseMessage())
   })
 )(Dashboard);

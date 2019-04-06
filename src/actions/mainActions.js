@@ -6,6 +6,7 @@ const sendUrl = "https://jobcoin.gemini.com/parka/api/transactions";
 export const FETCH_USER_DATA = "FETCH_USER_DATA";
 export const SEND_JOBCOINS = "SEND_JOBCOINS";
 export const SIGNOUT = "SIGNOUT";
+export const SET_RESPONSE_MESSAGE = "SET_INPUT_MESESAGE";
 
 export const signout = () => {
   return {
@@ -18,7 +19,6 @@ export const fetchUserData = jobcoinAddress => {
   return dispatch => {
     const fetchUserDataUrl = fetchUserDataBaseUrl + jobcoinAddress;
     return axios.get(fetchUserDataUrl).then(response => {
-      // handle success and failure?
       dispatch({
         type: FETCH_USER_DATA,
         payload: {
@@ -40,6 +40,18 @@ export const sendJobcoin = (sendAddress, fromAddress, amount) => {
       })
       .then(response => {
         dispatch(fetchUserData(fromAddress));
+      })
+      .catch((error, response) => {
+        // side effect of setting message and showing it
+        dispatch({
+          type: SET_RESPONSE_MESSAGE,
+          payload: "Error. Please try again"
+        });
       });
   };
 };
+
+export const resetResponseMessage = () => ({
+  type: SET_RESPONSE_MESSAGE,
+  payload: ""
+});

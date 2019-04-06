@@ -12,11 +12,18 @@ import {
   ToastHeader
 } from "reactstrap";
 
-const TransferWidget = ({ sendJobcoin, currentUserJobcoinAddress }) => {
+const TransferWidget = ({
+  sendJobcoin,
+  currentUserJobcoinAddress,
+  responseMessage,
+  resetResponseMessage
+}) => {
   const [destinationAddress, setDestinationAddress] = useState("");
   const [sendAmount, setSendAmount] = useState("");
 
   const handleInputChange = e => {
+    resetResponseMessage();
+
     if (e.target.name === "sendAmount") {
       setSendAmount(e.target.value);
     }
@@ -27,6 +34,7 @@ const TransferWidget = ({ sendJobcoin, currentUserJobcoinAddress }) => {
   };
 
   const handleOnSubmit = e => {
+    console.log("submiting", responseMessage);
     e.preventDefault();
     sendJobcoin(destinationAddress, currentUserJobcoinAddress, sendAmount);
     setSendAmount("");
@@ -55,6 +63,9 @@ const TransferWidget = ({ sendJobcoin, currentUserJobcoinAddress }) => {
               name="sendAmount"
               id="sendAmount"
             />
+            {responseMessage && (
+              <div className="text-danger">{responseMessage}</div>
+            )}
           </FormGroup>
           <Button style={styles.sendButton}>Send Jobcoins</Button>
         </Form>
@@ -71,7 +82,9 @@ const styles = {
 
 TransferWidget.propTypes = {
   sendJobcoin: PropTypes.func.isRequired,
-  currentUserJobcoinAddress: PropTypes.string
+  currentUserJobcoinAddress: PropTypes.string,
+  responseMessage: PropTypes.string,
+  resetResponseMessage: PropTypes.func
 };
 
 export default TransferWidget;

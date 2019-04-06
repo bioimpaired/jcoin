@@ -1,4 +1,8 @@
-import { FETCH_USER_DATA, SIGNOUT } from "../actions/mainActions";
+import {
+  FETCH_USER_DATA,
+  SIGNOUT,
+  SET_RESPONSE_MESSAGE
+} from "../actions/mainActions";
 
 const initialState = {
   currentUserJobcoinAddress: null
@@ -13,6 +17,11 @@ export default (state = initialState, action) => {
     case SIGNOUT:
       return {
         currentUserJobcoinAddress: action.payload
+      };
+    case SET_RESPONSE_MESSAGE:
+      return {
+        ...state,
+        responseMessage: action.payload
       };
     default:
       return state;
