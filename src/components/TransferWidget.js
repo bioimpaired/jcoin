@@ -34,7 +34,6 @@ const TransferWidget = ({
   };
 
   const handleOnSubmit = e => {
-    console.log("submiting", responseMessage);
     e.preventDefault();
     sendJobcoin(destinationAddress, currentUserJobcoinAddress, sendAmount);
     setSendAmount("");
