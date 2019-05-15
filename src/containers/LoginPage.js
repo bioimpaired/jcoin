@@ -31,11 +31,11 @@ const LoginPage = ({ fetchUserData }) => {
   return (
     <Container>
       <Toast style={styles.toast}>
-        <ToastHeader>Welcome! Sign in with your job coin address</ToastHeader>
+        <ToastHeader>Welcome! Sign in with your Jcoin address</ToastHeader>
         <ToastBody>
           <Form onSubmit={handleOnSubmit}>
             <FormGroup>
-              <Label for="jobcoinAddress">Jobcoin Address</Label>
+              <Label for="jobcoinAddress">Jcoin Address</Label>
               <Input
                 onChange={handleTextInput}
                 type="text"

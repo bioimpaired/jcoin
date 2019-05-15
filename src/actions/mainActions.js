@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const fetchUserDataBaseUrl = "https://jobcoin.gemini.com/parka/api/addresses/";
-const sendUrl = "https://jobcoin.gemini.com/parka/api/transactions";
+const fetchUserDataBaseUrl = "https://localhost:4000/api/addresses/";
+const sendUrl = "https://localhost:4000/api/transactions";
 
 export const FETCH_USER_DATA = "FETCH_USER_DATA";
 export const SEND_JOBCOINS = "SEND_JOBCOINS";
