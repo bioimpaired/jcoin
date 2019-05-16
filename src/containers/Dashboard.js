@@ -10,7 +10,7 @@ import TransferWidget from "../components/TransferWidget";
 
 import { sendJobcoin, resetResponseMessage } from "../actions/mainActions";
 
-const Dashboard = ({ props, sendJobcoin, resetResponseMessage, stateHere }) => {
+const Dashboard = ({ props, sendJobcoin, resetResponseMessage }) => {
   const {
     balance,
     currentUserJobcoinAddress,
@@ -45,7 +45,7 @@ const Dashboard = ({ props, sendJobcoin, resetResponseMessage, stateHere }) => {
 Dashboard.propTypes = {
   sendJobcoin: PropTypes.func.isRequired,
   props: PropTypes.shape({
-    balance: PropTypes.string,
+    balance: PropTypes.number,
     currentUserJobcoinAddress: PropTypes.string,
     responseMessage: PropTypes.string,
     resetResponseMessage: PropTypes.func,
@@ -53,7 +53,7 @@ Dashboard.propTypes = {
       PropTypes.shape({
         fromAddress: PropTypes.string,
         toAddress: PropTypes.string,
-        amount: PropTypes.string,
+        amount: PropTypes.number,
         time: PropTypes.string
       })
     )
@@ -61,7 +61,7 @@ Dashboard.propTypes = {
 };
 
 export default connect(
-  state => ({ props: state.mainReducer, stateHere: state }),
+  state => ({ props: state.mainReducer }),
   dispatch => ({
     sendJobcoin: (sendAddress, fromAddress, amount) =>
       dispatch(sendJobcoin(sendAddress, fromAddress, amount)),

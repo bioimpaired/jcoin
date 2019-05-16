@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const fetchUserDataBaseUrl = "https://localhost:4000/api/addresses/";
-const sendUrl = "https://localhost:4000/api/transactions";
+const fetchUserDataBaseUrl = "http://localhost:4000/api/addresses/";
+const sendUrl = "http://localhost:4000/api/transactions";
 
 export const FETCH_USER_DATA = "FETCH_USER_DATA";
 export const SEND_JOBCOINS = "SEND_JOBCOINS";
@@ -23,7 +23,7 @@ export const fetchUserData = jobcoinAddress => {
         type: FETCH_USER_DATA,
         payload: {
           currentUserJobcoinAddress: jobcoinAddress,
-          ...response.data
+          ...response.data.address[0]
         }
       });
     });

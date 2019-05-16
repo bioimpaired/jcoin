@@ -21,6 +21,7 @@ const TransferWidget = ({
   const [destinationAddress, setDestinationAddress] = useState("");
   const [sendAmount, setSendAmount] = useState("");
 
+  // remove const
   const handleInputChange = e => {
     resetResponseMessage();
 
@@ -66,7 +67,7 @@ const TransferWidget = ({
               <div className="text-danger">{responseMessage}</div>
             )}
           </FormGroup>
-          <Button style={styles.sendButton}>Send Jobcoins</Button>
+          <Button style={styles.sendButton}>Send Jcoins</Button>
         </Form>
       </ToastBody>
     </Toast>

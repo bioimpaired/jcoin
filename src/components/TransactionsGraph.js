@@ -8,6 +8,8 @@ const TransactionsGraph = ({ transactions, currentUserJobcoinAddress }) => {
   let timeStamps = [];
 
   let total = 0;
+
+  // clean up
   if (transactions) {
     const transactionss = transactions.map(transaction => {
       if (transaction.toAddress !== currentUserJobcoinAddress) {
@@ -41,7 +43,7 @@ const TransactionsGraph = ({ transactions, currentUserJobcoinAddress }) => {
 
   return (
     <div style={styles.border}>
-      <div style={styles.graphTitle}>Jobcoin History Graph</div>
+      <div style={styles.graphTitle}>Jcoin History Graph</div>
       <Line
         data={chartData}
         options={{
@@ -66,7 +68,7 @@ TransactionsGraph.propTypes = {
     PropTypes.shape({
       fromAddress: PropTypes.string,
       toAddress: PropTypes.string,
-      amount: PropTypes.string,
+      amount: PropTypes.number,
       time: PropTypes.string
     })
   )
